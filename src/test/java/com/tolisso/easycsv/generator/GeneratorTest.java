@@ -11,6 +11,8 @@ import com.tolisso.easycsv.parser.CsvTokenType;
 import com.tolisso.easycsv.parser.DataInfo;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,14 +76,20 @@ class GeneratorTest {
 
     private List<Generator> getGenerators() {
         ClassInfo classInfo = new ClassInfo("Caba");
-        List<String> names = List.of("a", "b");
-        List<CsvTokenType> types = List.of(NUMBER, STRING);
+        List<String> names = new ArrayList<>();
+        Collections.addAll(names, "a", "b");
+
+        List<CsvTokenType> types = new ArrayList<>();
+        Collections.addAll(types, NUMBER, STRING);
+
         DataInfo dataInfo = new DataInfo(names, types, null);
 
         Generator parentGen = new ParentClassGenerator(classInfo, "path-to-csv");
         Generator dfGen = new DfGenerator(dataInfo, classInfo);
         Generator rowGen = new RowGenerator(dataInfo, classInfo);
 
-        return List.of(parentGen, dfGen, rowGen);
+        List<Generator> ret = new ArrayList<>();
+        Collections.addAll(ret, parentGen, dfGen, rowGen);
+        return ret;
     }
 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public abstract class Generator {
 
@@ -19,7 +20,7 @@ public abstract class Generator {
     }
 
     public void generate() throws JClassAlreadyExistsException, IOException {
-        Path srcPath = Path.of("target", "generated-sources", "tolisso-df");
+        Path srcPath = Paths.get("target", "generated-sources", "tolisso-df");
         try {
             Files.createDirectories(srcPath);
         } catch (FileAlreadyExistsException ignored) {

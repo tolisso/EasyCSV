@@ -42,13 +42,13 @@ public class RowGenerator extends Generator {
     }
 
     private void addMapConstructor(JCodeModel codeModel, JDefinedClass clazz) {
-        var map = codeModel.ref(Map.class);
-        var mapWithGenerics = map.narrow(String.class, Object.class);
+        JClass map = codeModel.ref(Map.class);
+        JClass mapWithGenerics = map.narrow(String.class, Object.class);
 
-        var constructor = clazz.constructor(PROTECTED);
+        JMethod constructor = clazz.constructor(PROTECTED);
         String valueMap = "map";
         constructor.param(mapWithGenerics, valueMap);
-        var body = constructor.body();
+        JBlock body = constructor.body();
         for (int i = 0; i < dataInfo.getRowSize(); i++) {
             String name = dataInfo.getNames().get(i);
             body.directStatement("this." + name
@@ -74,7 +74,7 @@ public class RowGenerator extends Generator {
 
         String methodName = "set" + Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
         Class<?> type = dataInfo.getTypes().get(pos).clazz;
-        var method = clazz.method(PUBLIC, void.class, methodName);
+        JMethod method = clazz.method(PUBLIC, void.class, methodName);
         method.param(type, fieldName);
         method.body().directStatement("this." + fieldName + " = " + fieldName + ";");
     }

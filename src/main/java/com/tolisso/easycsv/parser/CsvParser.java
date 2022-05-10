@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,7 @@ public class CsvParser {
     public DataInfo getInfoFromFile(String stringPathToCsv) {
         Path pathToCsv;
         try {
-            pathToCsv = Path.of(stringPathToCsv);
+            pathToCsv = Paths.get(stringPathToCsv);
         } catch (InvalidPathException exc) {
             throw new CsvParseException("Invalid path", exc);
         }
