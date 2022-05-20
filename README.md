@@ -90,13 +90,13 @@ You don't have to specify a type, but get CSV parsed in dataframe that strictly 
     <!-- or -->
     <pathToCsv> C:\MyProject\aba.csv </pathToCsv>
   
-  -----
+  <br />
   
   Class Name can contain packages like 
     
     <className>pack1.pack2.Aba<className>
 
-  ------
+  <br />
       
   You can parse multiple CSVs at once as on the folowing example
     
